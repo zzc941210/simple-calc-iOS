@@ -13,11 +13,14 @@ enum op {
 }
 
 class ViewController: UIViewController {
+    //for display result
     @IBOutlet weak var resultLabel: UILabel!
     @IBOutlet weak var rpnLabel: UILabel!
+    //for enable and disable
     @IBOutlet weak var rpnEnter: UIButton!
     @IBOutlet weak var equalButton: UIButton!
-    
+
+
     var oldResult : Double?
     var currentOp : op = .none
     var rpn = false
@@ -32,51 +35,12 @@ class ViewController: UIViewController {
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
     }
-    
-    @IBAction func button0(_ sender: UIButton) {
-        resultLabel.text = resultLabel.text! + "0"
-    }
-    
-    @IBAction func button1(_ sender: UIButton) {
-        resultLabel.text = resultLabel.text! + "1"
-    }
-    
-    @IBAction func button2(_ sender: UIButton) {
-        resultLabel.text = resultLabel.text! + "2"
-    }
-    
-    @IBAction func button3(_ sender: UIButton) {
-        resultLabel.text = resultLabel.text! + "3"
-    }
-    
-    @IBAction func button4(_ sender: UIButton) {
-        resultLabel.text = resultLabel.text! + "4"
-    }
-    
-    @IBAction func button5(_ sender: UIButton) {
-        resultLabel.text = resultLabel.text! + "5"
-    }
-    
-    @IBAction func button6(_ sender: UIButton) {
-        resultLabel.text = resultLabel.text! + "6"
-    }
-    
-    @IBAction func button7(_ sender: UIButton) {
-        resultLabel.text = resultLabel.text! + "7"
+
+    // add text to the result label
+    @IBAction func numberButtonPress(_ sender: UIButton) {
+        resultLabel.text = resultLabel.text! + (sender.titleLabel?.text)!
     }
 
-    @IBAction func button8(_ sender: UIButton) {
-        resultLabel.text = resultLabel.text! + "8"
-    }
-    
-    @IBAction func button9(_ sender: UIButton) {
-        resultLabel.text = resultLabel.text! + "9"
-    }
-   
-    @IBAction func buttonDot(_ sender: UIButton) {
-        resultLabel.text = resultLabel.text! + "."
-    }
-    
     @IBAction func buttonDiv(_ sender: UIButton) {
         rpn ? rpnCal(op: .divRPN) : nonRPNCal(op: .div)
     }
@@ -124,7 +88,7 @@ class ViewController: UIViewController {
         if let value = clearResultLabel() {
             opNumber.append(value)
         }
-         if (rpn) { rpnCal(op: .avg) }
+        if (rpn) { rpnCal(op: .avg) }
     }
     
     @IBAction func buttonFact(_ sender: UIButton) {
@@ -247,7 +211,3 @@ class ViewController: UIViewController {
         return num * fact(num : num - 1)
     }
 }
-
-
-
-
